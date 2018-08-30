@@ -3,7 +3,6 @@ const TOKEN = process.env.TOKEN
 const prefix = ".;"
 const bot = new Discord.Client({disableEveryone: true});
 const fs = require("fs");
-//const mysql = require("mysql")
 
 bot.commands = new Discord.Collection();
 bot.mutes = require("./mutes.json")
@@ -20,7 +19,6 @@ fs.readdir("./cmds/", (err, files) => {
 
     jsfiles.forEach((f, i) => {
         let props = require(`./cmds/${f}`);
-        //console.log(`${i + 1}: ${f} loaded.`);
         bot.commands.set(props.help.name, props);
     });
 });
@@ -55,46 +53,9 @@ bot.on("ready", () => {
         }
     }, 3000)
 });
-
-//var con = mysql.createConnection({
- //   host: "localhost",
- //   user: "root",
- //   password: "password",
- //   database: "lynxbot"
-})
-//test
-//con.connect(err => {
-   // if(err) throw err
-   // console.log("Connected to database!")
-
-//})
-
-//function generateXp() {
-   // let min = 20
-   // let max = 30
-   // return Math.floor(Math.random() *  (max - min + 1)) + min
-//}
-
 bot.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;
-
-   // con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err,rows)  => {
-      //  if(err) throw err
-
-       // let sql;
-
-       // if(rows.length <1 ) {
-        //    sql= `INSERT INTO xp (id, xp) VALUES ('${message.author.id}', ${generateXp})`
-       // } else {
-       //     let xp = rows[0].xp
-//
-      //      sql = `UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`
-     //   }
-
-     //   con.query(sql)
-   // })
-
     if(/(?:https?:\/)?discord(?:app.com\/invite|.gg)/gi.test(message.content)){
         message.delete();
         return;
@@ -108,9 +69,7 @@ bot.on("message", async message => {
     
 
     let cmd = bot.commands.get(command.slice(prefix.length))
-    if(cmd) cmd.run(bot, message, args);
-
-
-})
+    if(cmd) cmd.run(bot, message, args, con)})
 
 bot.login(TOKEN);
+
