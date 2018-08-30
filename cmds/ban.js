@@ -31,7 +31,7 @@ if(toBan.highestRole.position >= message.member.highestRole.position) return mes
     embed6.setAuthor(message.author.username);
     embed6.setDescription(`:white_check_mark: The user **${toBan}** has been banned by ${message.author.username}.`)
     embed6.setColor("#43D490")
-    await toBan.ban; 
+    await ban(toBan).; 
     message.channel.send(embed6)
 
 
