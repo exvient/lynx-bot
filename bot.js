@@ -3,7 +3,7 @@ const TOKEN = process.env.TOKEN
 const prefix = ".;"
 const bot = new Discord.Client({disableEveryone: true});
 const fs = require("fs");
-const mysql = require("mysql")
+//const mysql = require("mysql")
 
 bot.commands = new Discord.Collection();
 bot.mutes = require("./mutes.json")
@@ -56,16 +56,16 @@ bot.on("ready", () => {
     }, 3000)
 });
 
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "password",
-    database: "lynxbot"
+//var con = mysql.createConnection({
+ //   host: "localhost",
+ //   user: "root",
+ //   password: "password",
+ //   database: "lynxbot"
 })
 //test
-con.connect(err => {
-    if(err) throw err
-    console.log("Connected to database!")
+//con.connect(err => {
+   // if(err) throw err
+   // console.log("Connected to database!")
 
 })
 
@@ -108,7 +108,7 @@ bot.on("message", async message => {
     
 
     let cmd = bot.commands.get(command.slice(prefix.length))
-    if(cmd) cmd.run(bot, message, args, con);
+    if(cmd) cmd.run(bot, message, args);
 
 
 })
