@@ -25,11 +25,14 @@ if(toBan.id === message.author.id) return message.channel.send(embed4)
     embed5.setDescription(":no_entry_sign: You cannot ban someone the same role or higher than you.");
     embed5.setColor("#FF7575");
 if(toBan.highestRole.position >= message.member.highestRole.position) return message.channel.send(embed5)
+    
+    
     let embed6 = new Discord.RichEmbed();
     embed6.setAuthor(message.author.username);
     embed6.setDescription(`:white_check_mark: The user **${toBan}** has been banned by ${message.author.username}.`)
     embed6.setColor("#43D490")
-await toBan.ban; return message.channel.send(embed6)
+    await toBan.ban; 
+    message.channel.send(embed6)
 
 
 }
