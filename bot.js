@@ -67,7 +67,7 @@ bot.on("ready", () => {
    // if(err) throw err
    // console.log("Connected to database!")
 
-})
+//})
 
 //function generateXp() {
    // let min = 20
